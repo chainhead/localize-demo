@@ -5,7 +5,7 @@ const rp = require('request-promise')
 app.get('/demo/:lang', (req, res, next) => {
     var options = {
         method: "GET",
-        uri: "http://172.17.0.2:3001/localize",
+        uri: "http://localhost:3001/localize",
         body: {
             "lang": req.params.lang,
             "msg": {
