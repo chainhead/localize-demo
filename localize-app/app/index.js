@@ -5,12 +5,11 @@ const bp = require('body-parser')
 var Localize = require('localize');
 var localizedMessages = new Localize({
     "MSG001E: $[1], $[2]": {
-        "en": "en - Database stopped - $[1], $[2]",
+        "es": "es - Database stopped - $[1], $[2]",
         "hi": "hi - Database stopped - $[1], $[2]",
         "kn": "kn - Database stopped - $[1], $[2]"
     }
 })
-//
 //
 app.use(bp.json())
 //
