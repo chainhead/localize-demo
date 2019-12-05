@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: sidecar-svc
+  name: sidecar
 spec:
   type: ClusterIP
   ports:
@@ -33,6 +33,13 @@ spec:
       - name: mainapp
         image: nsubrahm/mainapp:0.0.0
         imagePullPolicy: IfNotPresent
+        ports:
+          - containerPort: 3000
+            protocol: TCP
       - name: localize
         image: nsubrahm/localize:0.0.0
         imagePullPolicy: IfNotPresent
+        ports:
+          - containerPort: 3001
+            protocol: TCP
+        
