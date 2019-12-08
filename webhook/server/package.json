@@ -4,7 +4,7 @@
   "description": "Mutating Webhook server",
   "main": "index.js",
   "scripts": {
-    "start" : "node app/index.js"
+    "start": "node app/index.js"
   },
   "repository": {
     "type": "git",
@@ -25,6 +25,7 @@
   "homepage": "https://github.com/chainheaed/localize-demo#readme",
   "dependencies": {
     "express": "^4.17.1",
+    "fast-json-patch": "^3.0.0-1",
     "winston": "^3.2.1"
   }
 }

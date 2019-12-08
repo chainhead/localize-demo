@@ -5,13 +5,13 @@ metadata:
   labels:
     app: sidecar-injector
 webhooks:
-  - name: sidecar-injector.morven.me
+  - name: sidecar-injector.nsubrahm.com
     clientConfig:
       service:
-        name: sidecar-injector-webhook-svc
-        namespace: default
+        name: webhook
+        namespace: NAMESPACE_STRING
         path: "/mutate"
-      caBundle: ${CA_BUNDLE}
+      caBundle: CA_BUNDLE
     rules:
       - operations: [ "CREATE" ]
         apiGroups: [""]
