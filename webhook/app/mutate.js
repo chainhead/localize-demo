@@ -1,6 +1,6 @@
 
 function mutate(options, callback) {
-    return callback(null, res)
+    return callback(null, {})
 }
 //
 module.exports = { mutate }

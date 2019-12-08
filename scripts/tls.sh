@@ -6,7 +6,7 @@ set -o errexit
 
 CONF_DIR=../conf
 CERTS_DIR=../certs
-YAML_DIR=../k8s
+YAML_DIR=../yaml
 APP="${1:-mutate}"
 NAMESPACE="${2:-default}"
 CSR_NAME="${APP}.${NAMESPACE}.csr"
