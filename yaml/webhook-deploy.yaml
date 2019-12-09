@@ -8,7 +8,7 @@ metadata:
 spec:
   containers:
     - name: webhook
-      image: nsubrahm/webhook-server:0.0.0
+      image: nsubrahm/webhook-server:0.0.1
       imagePullPolicy: Always
       volumeMounts:
         - name: certs
@@ -31,7 +31,7 @@ spec:
   ports:
     - name: 4443-tcp
       protocol: TCP
-      port: 4443
+      port: 443
       targetPort: 4443
   selector:
     app: webhook 

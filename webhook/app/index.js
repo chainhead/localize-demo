@@ -9,10 +9,12 @@ const app = express()
 app.use(bodyParser.json())
 //
 app.post('/mutate', (req, res, next) => {
+    console.log('Request received - ', req.body.request.uid)
     mutate.mutate(req.body.request, (err, res) => {
         if (err) {
             res.status(500).send({})
         } else {
+            console.log('Response created - ', JSON.stringify(res))
             res.status(200).send({
                 kind: req.body.kind,
                 apiVersion: req.body.apiVersion,

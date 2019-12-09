@@ -26,7 +26,7 @@ sed -i '' "s/namespace/${NAMESPACE}/g" ${CONF_DIR}/csr.conf
 openssl req -new -key ${CERTS_DIR}/${APP}.${NAMESPACE}.key -subj "/CN=${CSR_NAME}" -out ${CERTS_DIR}/${CSR_NAME} -config ${CONF_DIR}/csr.conf
 
 echo "Checking for CSR object - ${CSR_NAME}"
-if [ `kubectl get csr ${CSR_NAME} 1>/dev/null 2>/dev/null` ]; then
+if (( `kubectl get csr ${CSR_NAME} 1>/dev/null 2>/dev/null` )); then
   echo "CSR ${CSR_NAME} found. Deleting it."
   kubectl delete csr ${CSR_NAME} || exit 8  
 else
