@@ -8,7 +8,7 @@ const mutate = require('./mutate')
 const app = express()
 app.use(bodyParser.json())
 //
-app.post('/mutate', (req, res, next) => {
+app.post('/', (req, res, next) => {
     console.log('Request received - ', req.body.request.uid)
     mutate.mutate(req.body.request, (err, res) => {
         if (err) {
