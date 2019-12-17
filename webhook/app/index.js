@@ -8,18 +8,19 @@ const mutate = require('./mutate')
 const app = express()
 app.use(bodyParser.json())
 //
-app.post('/', (req, res, next) => {
-    console.log('Request received - ', req.body.request.uid)
-    mutate.mutate(req.body.request, (err, res) => {
+app.post('/mutate', (req, res, next) => {
+    let admReq = req.body.request
+    console.log(admReq.uid + ' - ' + admReq.resource.resource + ' - ' + admReq.name + ' - ' + admReq.namespace + ' - ' + admReq.operation)
+    mutate.mutate(req.body, (err, resp) => {
         if (err) {
             res.status(500).send({})
         } else {
-            console.log('Response created - ', JSON.stringify(res))
+            res.type('application/json')
             res.status(200).send({
                 kind: req.body.kind,
                 apiVersion: req.body.apiVersion,
                 request: req.body.request,
-                response: res
+                response: resp
             })
         }
     })

@@ -1,16 +1,23 @@
 #!/bin/bash
 
-# Create certificates and secrets
-./certs.sh mutate sidecars
+# The folder where this was cloned into from the GitHub repository.
+PROJECT_HOME=${PWD}
+# Other folders we need for this script
+CONF_DIR=${PROJECT_HOME}/conf
+SCRIPTS_DIR=${PROJECT_HOME}/scripts 
+CERTS_DIR=${PROJECT_HOME}/certs 
+YAML_DIR=${PROJECT_HOME}/yaml
+APP_HOME=${PROJECT_HOME}/webhook 
 
-# Docker image for webhook server
-docker build -t nsubrahm/webhook-server:0.0.0 ../webhook ../webhook/Dockerfile 
-docker push nsubrahm/webhook-server:0.0.0
+# Command line arguments
+APP=$1
+NAMESPACE=$2
+
+# Create certificates and secrets
+source ${SCRIPTS_DIR}/certs-macos.sh ${APP} ${NAMESPACE}
+
+# Create image for webhook server
+source ${SCRIPTS_DIR}/image.sh 
 
 # Create k8s objects
-# - Deployment and Service for webhook server
-kubectl create -f ../yaml/webhook-deploy.yaml 
-# - Webhook configuration
-kubectl create -f ../yaml/mutatingWebhookConfiguration.yaml -n sidecars
-
-kubectl label namespace sidecars webhook=enabled
+source ${SCRIPTS_DIR}/objects.sh 
